@@ -35,25 +35,30 @@ public class RestTest {
                 .then().statusCode(200) //The response must have this status
                 .and().assertThat().body("msg", equalTo("Greker")); //msg in JSON must be this value
     }
-
+    //{"name" : "Per", "id" : 1337}
     @Test
     public void assertIdPer() {
         //Run a GET against "http://localhost:8080/id/Per"
         //Assert that the id in the JSON-response is 1337
-        fail();
+        given().contentType("application/json")
+                .get("/id/Per")
+                .then().statusCode(200)
+                .and().assertThat().body("id", equalTo(1337));
     }
 
     @Test
     public void assertIdPaal() {
         //Verify Paal's id. It should be 4489
-        fail();
     }
 
     @Test
     public void cannotDeletePer() {
         //Try to delete Per, i.e. run a DELETE against "http://localhost:8080/id/Per"
         //Assert that this is unauthorized. Hint: check the HTTP status code
-        fail();
+        given().contentType("application/json")
+                .delete("/id/Per")
+                .then().statusCode(401);
+
 
     }
 
@@ -61,7 +66,9 @@ public class RestTest {
     public void picturesArePrivate() {
         //Try to gain access to the resource "/private_pictures"
         //Assert that this is forbidden. Again, consider the status code
-        fail();
+        given().contentType("application/json")
+                .get("/private_pictures")
+                .then().statusCode(403);
 
     }
 
