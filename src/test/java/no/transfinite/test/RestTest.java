@@ -19,11 +19,7 @@ import static io.restassured.RestAssured.given;
 import static org.junit.Assert.*;
 
 
-
-
-
-public class RestTest
-{
+public class RestTest {
     @Before
     public void setUp() {
         RestAssured.port = 8080;
@@ -44,17 +40,20 @@ public class RestTest
     public void assertIdPer() {
         //Run a GET against "http://localhost:8080/id/Per"
         //Assert that the id in the JSON-response is 1337
+        fail();
     }
 
     @Test
     public void assertIdPaal() {
         //Verify Paal's id. It should be 4489
+        fail();
     }
 
     @Test
     public void cannotDeletePer() {
         //Try to delete Per, i.e. run a DELETE against "http://localhost:8080/id/Per"
         //Assert that this is unauthorized. Hint: check the HTTP status code
+        fail();
 
     }
 
@@ -62,6 +61,7 @@ public class RestTest
     public void picturesArePrivate() {
         //Try to gain access to the resource "/private_pictures"
         //Assert that this is forbidden. Again, consider the status code
+        fail();
 
     }
 
@@ -69,12 +69,14 @@ public class RestTest
     public void doesSmartTrumpExist() {
         //Run a GET against "http://localhost:8080/smart/Trump"
         //This should not exist. Verify that it doesn't
+        fail();
     }
 
     @Test
     public void checkSalary() {
         //To check salary, the resource is /salary/<emp-name>
         //Verify that Per's salary is 300000. Hint: 'salary' is the key in the response
+        fail();
 
     }
 
@@ -84,18 +86,19 @@ public class RestTest
     public void raiseSalary() {
         //Increase Per's salary to 900000
         //Finally, check if it has been increased.
+        fail();
 
     }
 
     @Test
     public void checkAndDeleteAskeladdAndVerify() {
-
+        fail();
 
     }
 
     @Test
     public void dontTakeForever() {
         //When running tests, time out-interval is important.
-
+        fail();
     }
 }
