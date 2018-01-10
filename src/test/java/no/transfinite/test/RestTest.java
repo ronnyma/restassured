@@ -97,9 +97,5 @@ public class RestTest
     public void dontTakeForever() {
         //When running tests, time out-interval is important.
 
-
-
     }
-
-
 }
