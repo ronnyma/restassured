@@ -15,7 +15,10 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.lessThan;
 import static org.hamcrest.Matchers.equalTo;
 
+import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.when;
+
 import static org.junit.Assert.*;
 
 
@@ -31,46 +34,54 @@ public class RestTest {
     @Test
     public void confirmName() {
         given().contentType("application/json") //Send JSON-header
-                .get("/name") //This is the resource. Note the verb!
+                .when().get("/name") //This is the resource. Note the verb!
                 .then().statusCode(200) //The response must have this status
                 .and().assertThat().body("msg", equalTo("Greker")); //msg in JSON must be this value
     }
 
     @Test
     public void assertIdPer() {
+        given().contentType("application/json")
+            .when().get("/id/Per")
+            .then().statusCode(200)
+            .and().assertThat().body("id", equalTo(1337));
         //Run a GET against "http://localhost:8080/id/Per"
         //Assert that the id in the JSON-response is 1337
-        fail();
     }
 
     @Test
     public void assertIdPaal() {
+        given().contentType("application/json")
+            .when().get("/id/Paal")
+            .then().statusCode(200)
+            .and().assertThat().body("id", equalTo(4489));
+
         //Verify Paal's id. It should be 4489
-        fail();
+        //fail();
     }
 
     @Test
     public void cannotDeletePer() {
+        given().contentType("application/json")
+            .when().delete("/id/Per")
+            .then().statusCode(401);
+            //.and().assertThat.body();
         //Try to delete Per, i.e. run a DELETE against "http://localhost:8080/id/Per"
         //Assert that this is unauthorized. Hint: check the HTTP status code
-        fail();
+        //fail();
     }
 
     @Test
     public void picturesArePrivate() {
+        given().contentType("application/json")
+            .when().get("/private_pictures")
+            .then().statusCode(403);
         //Try to gain access to the resource "/private_pictures"
         //Assert that this is forbidden. Again, consider the status code
-        fail();
+        //fail();
     }
 
-    @Test
-    public void doesSmartTrumpExist() {
-        //Run a GET against "http://localhost:8080/smart/Trump"
-        //This should not exist. Verify that it doesn't
-        fail();
-    }
-
-    @Test
+     @Test
     public void checkSalary() {
         //To check salary, the resource is /salary/<emp-name>
         //Verify that Per's salary is 300000. Hint: 'salary' is the key in the response
