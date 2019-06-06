@@ -36,7 +36,7 @@ public class RestTest {
         given().contentType("application/json") //Send JSON-header
                 .when().get("/name") //This is the resource. Note the verb!
                 .then().statusCode(200) //The response must have this status
-                .and().assertThat().body("msg", equalTo("Greker")); //msg in JSON must be this value
+                .and().assertThat().body("msg", equalTo("Greger")); //msg in JSON must be this value
     }
 
     @Test
